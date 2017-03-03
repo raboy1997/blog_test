@@ -68,6 +68,10 @@ p {
 
 
 /* header */
+.navbar-inverse{
+  background-color: #228;
+}
+
 
 #logo {
   float: left;
@@ -89,6 +93,9 @@ p {
   height: 70px;
 }
 
+ul.nav li {
+  display: inline-block;
+}
 
 /* footer */
 

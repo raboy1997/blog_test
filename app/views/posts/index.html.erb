@@ -1,0 +1,9 @@
+<% @posts.each do |post| %>
+    <div class="post_wrapper">
+      <h1 class="title"><%= link_to post.title, post %></h1>
+      <p><%= image_tag post.user.avatar.url , size: '50x50' %></p>
+       <p> user: <%= post.user.name %></p>
+      <p class="date">created: <%= post.created_at.strftime("%B %d, %Y") %></p>
+      <hr>
+    </div>
+<% end %>
