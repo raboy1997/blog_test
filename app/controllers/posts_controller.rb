@@ -9,6 +9,9 @@ class PostsController < ApplicationController
 
 
   def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments
+    @new_comment = @post.comments.new
   end
 
 
@@ -31,6 +34,7 @@ class PostsController < ApplicationController
   end
 
   def update
+
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -40,15 +44,16 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
 
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      respond_to do |format|
+        format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+        format.json { head :no_content }
+      end
   end
 
   private
@@ -59,4 +64,6 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body )
     end
+
+
 end

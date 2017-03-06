@@ -1,0 +1,29 @@
+<div class="comment clearfix">
+  <div class="comment_content">
+    <p class="comment_body"><%= comment.body %></p>
+    <% if comment.created_at %>
+        <p class="comment_time"><%= time_ago_in_words(comment.created_at) %> Ago</p>
+    <% end %>
+  </div>
+
+  <% if current_user?(@post.user)%>
+
+      <p><%= link_to 'delete',[comment.post, comment], method: :delete, data: { confirm: 'Delete comment?' },
+                     class: 'glyphicon glyphicon-trash text-danger', id: "#{comment.id}_delete", remote: true,
+                     title: 'Delete comment', rel: 'tooltip' %>
+      <p><%= link_to 'edit' , edit_post_comment_path(@post, comment)   %></p>
+  <% end %>
+
+  <p><%= link_to 'Add a Reply', new_comment_comment_path(comment) %></p>
+
+  <% unless comment.comments.empty? %>
+      <ul class="comment_list">
+        <%= render :partial => 'comments/comment', :collection => comment.comments %>
+      </ul>
+  <% end %>
+
+</div>
+
+
+
+
