@@ -2,9 +2,10 @@
   <div class="col-md-8 col-md-offset-2">
 
     <h2 id="log-in-title">Регистрация</h2>
-    <%= render 'shared/error_messages' %>
 
     <%= form_for @user, html: { multipart: true } do |f| %>
+
+        <%= render 'shared/error_messages' , object: f.object %>
 
         <%= f.label :name %>
         <%= f.text_field :name %>

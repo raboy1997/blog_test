@@ -1,0 +1,9 @@
+<%= form_for([@post, @comment])  do |f| %>
+
+    <div>
+      <%= f.text_field :body %>
+    </div>
+    <div>
+      <%= f.submit 'Update' %>
+    </div>
+<% end %>
