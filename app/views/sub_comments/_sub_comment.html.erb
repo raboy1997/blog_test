@@ -1,0 +1,12 @@
+<div class="comment clearfix">
+  <div class="comment_content">
+
+    <p class="comment_body"> <%= sub_comment.body %></p>
+    <p><%= image_tag sub_comment.user.avatar.url , size: '50x50' %></p>
+    <% if current_user?(sub_comment.user)%>
+
+        <p><%= link_to 'edit' , edit_sub_comment_path(sub_comment.id)%></p>
+    <% end %>
+
+  </div>
+</div>

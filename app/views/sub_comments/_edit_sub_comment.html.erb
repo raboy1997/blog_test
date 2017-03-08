@@ -1,0 +1,10 @@
+<% byebug %>
+<%= form_for  @sub_comment, url: update_sub_comment_path(post_id: @sub_comment.comment.post)  do |f| %>
+
+    <div>
+      <%= f.text_field :body %>
+    </div>
+    <div>
+      <%= f.submit 'Update' %>
+    </div>
+<% end %>

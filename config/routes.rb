@@ -4,9 +4,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :comments do
-    resources :comments
-  end
+  post '/create/sub_comment' , to: 'sub_comments#create' , as: 'create_sub_comment'
+ # get '/comment/:id/edit' , to: 'comments#edit' , as: 'comment_edit'
+  patch '/posts/:post_id/comments/:comment_id/edit' , to: 'comments#update' , as: 'update_comment'
+  get 'edit/sub_comment/:sub_comment_id' , to: "sub_comments#edit" , as: 'edit_sub_comment'
+  patch '/edit/sub_comment/:sub_comment_id' , to: 'sub_comments#update' , as: 'update_sub_comment'
 
   root "posts#index"
 
@@ -15,8 +17,5 @@ Rails.application.routes.draw do
   match '/signout',  to: 'sessions#destroy', via: :delete
 
   post 'users/new' , to: 'users#new'
-  #post '/posts/:post_id/comments/:id' , to: 'comments#edit'
-  #post '/posts/:post_id/comments/:id/edit' , to: 'comments#update'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
