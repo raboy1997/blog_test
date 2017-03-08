@@ -1,28 +1,30 @@
-<div class="comment clearfix">
-  <div class="comment_content">
-    <p class="comment_body"><%= comment.body %></p>
-    <% if comment.created_at %>
-        <p class="comment_time"><%= time_ago_in_words(comment.created_at) %> Ago</p>
-    <% end %>
-  </div>
+<% if comment.present? %>
+    <div id="comment_<%= comment.id %>" class="row single-comment vertical-align">
+      <div class="comment clearfix">
+        <div class="comment_content">
 
-  <% if current_user?(@post.user)%>
+          <p class="comment_body"> <%= comment.body %> </p>
+          <p><%= image_tag comment.user.avatar.url , size: '50x50' %></p>
 
-      <p><%= link_to 'delete',[comment.post, comment], method: :delete, data: { confirm: 'Delete comment?' },
-                     class: 'glyphicon glyphicon-trash text-danger', id: "#{comment.id}_delete", remote: true,
-                     title: 'Delete comment', rel: 'tooltip' %>
-      <p><%= link_to 'edit' , edit_post_comment_path(@post, comment)   %></p>
-  <% end %>
+        </div>
+        <div id="comments_list">
+          <%= render comment.sub_comments %>
+        </div>
+        <%= render 'sub_comments/sub_form' , comment: comment  %>
 
-  <p><%= link_to 'Add a Reply', new_comment_comment_path(comment) %></p>
 
-  <% unless comment.comments.empty? %>
-      <ul class="comment_list">
-        <%= render :partial => 'comments/comment', :collection => comment.comments %>
-      </ul>
-  <% end %>
+        <% if current_user?(comment.user)%>
 
-</div>
+            <p><%= link_to 'delete',[comment.post, comment], method: :delete, data: { confirm: 'Delete comment?' },
+                           class: 'glyphicon glyphicon-trash text-danger', id: "#{comment.id}_delete", remote: true,
+                           title: 'Delete comment', rel: 'tooltip' %>
+            <p><%= link_to 'edit' , edit_post_comment_path(comment.post , comment)%></p>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+
+
 
 
 
