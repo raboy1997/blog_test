@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   patch '/posts/:post_id/comments/:comment_id/edit' , to: 'comments#update' , as: 'update_comment'
   get 'edit/sub_comment/:sub_comment_id' , to: "sub_comments#edit" , as: 'edit_sub_comment'
   patch '/edit/sub_comment/:sub_comment_id' , to: 'sub_comments#update' , as: 'update_sub_comment'
+  delete '/delete/sub_comment/:id' , to: 'sub_comments#destroy' , as: 'destroy_sub_comment'
 
   root "posts#index"
 

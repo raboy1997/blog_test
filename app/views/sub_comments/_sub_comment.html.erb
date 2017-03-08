@@ -1,12 +1,19 @@
-<div class="comment clearfix">
-  <div class="comment_content">
+<div id="sub_comment_<%= sub_comment.id %>" class="row single-comment vertical-align">
 
-    <p class="comment_body"> <%= sub_comment.body %></p>
-    <p><%= image_tag sub_comment.user.avatar.url , size: '50x50' %></p>
-    <% if current_user?(sub_comment.user)%>
+  <div class="comment clearfix">
+    <div class="comment_content">
 
-        <p><%= link_to 'edit' , edit_sub_comment_path(sub_comment.id)%></p>
-    <% end %>
+      <p class="comment_body"> <%= sub_comment.body %></p>
+      <p><%= image_tag sub_comment.user.avatar.url , size: '50x50' %></p>
+      <% if current_user?(sub_comment.user)%>
 
+          <p><%= link_to 'delete',destroy_sub_comment_path(sub_comment_id: sub_comment.id, post_id: sub_comment.comment.post),
+                         method: :delete, data: { confirm: 'Delete comment?' },
+                         class: 'delete_sub_comment', id: "#{sub_comment.id}_delete", remote: true,
+                         title: 'Delete comment', rel: 'tooltip' %>
+          <p><%= link_to 'edit' , edit_sub_comment_path(sub_comment.id)%></p>
+      <% end %>
+
+    </div>
   </div>
 </div>

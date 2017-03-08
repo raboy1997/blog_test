@@ -1,22 +1,26 @@
 <% if comment.present? %>
-    <div class="comment clearfix">
-      <div class="comment_content">
+    <div id="comment_<%= comment.id %>" class="row single-comment vertical-align">
+      <div class="comment clearfix">
+        <div class="comment_content">
 
-        <p class="comment_body"> <%= comment.body %> </p>
-        <p><%= image_tag comment.user.avatar.url , size: '50x50' %></p>
+          <p class="comment_body"> <%= comment.body %> </p>
+          <p><%= image_tag comment.user.avatar.url , size: '50x50' %></p>
 
+        </div>
+        <div id="comments_list">
+          <%= render comment.sub_comments %>
+        </div>
+        <%= render 'sub_comments/sub_form' , comment: comment  %>
+
+
+        <% if current_user?(comment.user)%>
+
+            <p><%= link_to 'delete',[comment.post, comment], method: :delete, data: { confirm: 'Delete comment?' },
+                           class: 'glyphicon glyphicon-trash text-danger', id: "#{comment.id}_delete", remote: true,
+                           title: 'Delete comment', rel: 'tooltip' %>
+            <p><%= link_to 'edit' , edit_post_comment_path(comment.post , comment)%></p>
+        <% end %>
       </div>
-      <%= render comment.sub_comments %>
-      <%= render 'sub_comments/sub_form' , comment: comment  %>
-
-
-      <% if current_user?(comment.user)%>
-
-          <p><%= link_to 'delete',[comment.post, comment], method: :delete, data: { confirm: 'Delete comment?' },
-                         class: 'glyphicon glyphicon-trash text-danger', id: "#{comment.id}_delete", remote: true,
-                         title: 'Delete comment', rel: 'tooltip' %>
-          <p><%= link_to 'edit' , edit_post_comment_path(comment.post , comment)%></p>
-      <% end %>
     </div>
 <% end %>
 

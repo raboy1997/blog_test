@@ -29,6 +29,17 @@ class SubCommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @sub_comment = SubComment.find(params[:sub_comment_id])
+    @post = Post.find(params[:post_id])
+    @sub_comment.destroy
+    respond_to do |format|
+      format.html { redirect_to @post }
+      format.json { head :no_content }
+      format.js { render :layout => false }
+    end
+  end
+
 
   private
 
