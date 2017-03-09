@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :remember_token
       t.index :remember_token
 
-
       t.timestamps
     end
   end

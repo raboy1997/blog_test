@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:create, :destroy , :edit]
-
-
+  before_action :signed_in_user, only: [:create, :destroy, :edit]
 
   def new
     @post = Post.new
@@ -28,8 +26,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update_attributes(post_params)
@@ -48,13 +45,12 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    def post_params
-      params.require(:post).permit(:title, :body )
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end
