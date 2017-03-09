@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: raboy1997
+  password: vfrc1997
+
+development:
+  <<: *default
+  database: blog_test_development
+
+
+test:
+  <<: *default
+  database: blog_test_test
+
+production:
+  <<: *default
+  database: blog_test_production
+  username: raboy1997
+  password: vfrc1997

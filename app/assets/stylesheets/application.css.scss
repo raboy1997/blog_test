@@ -168,6 +168,7 @@ p{
       color: #9eafba;
       margin: .5em 0 2em 0;
     }
+
     #comments {
       h2 {
         margin: 3em 0 1em 0;
@@ -210,6 +211,10 @@ p{
         width: 50%;
       }
     }
+  }
+
+  .sub_comment_content{
+    margin-left: 80px;
   }
   #page_wrapper {
     padding: 3em;

@@ -1,8 +1,8 @@
 <%= form_for @new_sub_comment, url: create_sub_comment_path, remote: true do |f|%>
     <div class="form-group">
       <%= f.hidden_field :comment_id , value: comment.id  %>
-      <%= f.text_field :body, class: 'form-control' %>
+      <%= f.text_area :body, class: 'form-control' , rows: '3' %>
     </div>
 
-    <%= f.submit 'Post your comment', class: 'btn btn-default' %>
+    <%= f.submit 'Post your comment', class: 'btn btn-default sub_comment_submit' %>
 <% end %>
